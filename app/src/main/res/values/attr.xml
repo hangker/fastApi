@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="AppTitleBar">
+        <attr name="bar_title" format="string" />
+        <attr name="back_img" format="reference" />
+        <attr name="back_text" format="string" />
+        <attr name="action_img" format="reference" />
+        <attr name="action_text" format="string" />
+        <attr name="bar_background" format="reference|color" />
+        <attr name="bar_title_text_color" format="reference|color" />
+    </declare-styleable>
+
+
+</resources>

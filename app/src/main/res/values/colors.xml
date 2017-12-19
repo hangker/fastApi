@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+
+    <!--全局主色-->
+    <color name="main">#d94a42</color>
+
+    <color name="fragment_bg">#f2f2f2</color>
+    <color name="tab_Color">#e2dede</color>
+    <color name="white">#ffffff</color>
+    <color name="dividerColor">#b3b3b3</color>
+    <color name="selectorColor">#dbdbdb</color>
+    <color name="transparent">#00000000</color>
+    <color name="yellow">#e7e2dd37</color>
+    <color name="black">#e7494946</color>
+    <color name="blue">#e729dae2</color>
+    <color name="yellow_high">#d5eab909</color>
+    <color name="app_red">#f72940</color>
+    <color name="black70">#B3000000</color>
+    <color name="app_gray">#bdbdbd</color>
+    <color name="app_pink">#fdd4d9</color>
+    <color name="popWindow_bg">#c8595e64</color>
+</resources>
