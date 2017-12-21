@@ -1,6 +1,5 @@
 package com.example.fast.fastproject.mvp;
 
-import java.util.HashMap;
 import java.util.Map;
 
 import io.reactivex.Observable;
@@ -226,7 +225,7 @@ public class CommonPresenter implements
 
     private CompositeDisposable mCompositeDisposable;
 
-    private void addSubscription(Observable observable, Observer observer) {
+    private void addSubscription(Observable observable, Observer Observer) {
         if (mCompositeDisposable == null) {
             mCompositeDisposable = new CompositeDisposable();
         }
@@ -236,18 +235,20 @@ public class CommonPresenter implements
         observable
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(observer);
+                .subscribe(Observer);
     }
 
     @Override
     public void unSubscribe() {
-        mCompositeDisposable.clear();
+        if (mCompositeDisposable != null) {
+            mCompositeDisposable.clear();
+        }
     }
 
     //************************************************* request **************************************
     @Override
     public void request1(Map<String, String> map) {
-        addSubscription(NetWorkManager.getApi().get1(map), new Observer() {
+        addSubscription(NetWorkManager.getApi().get1(map), new Observer<Object>() {
             @Override
             public void onSubscribe(Disposable d) {
                 mCompositeDisposable.add(d);
@@ -255,7 +256,7 @@ public class CommonPresenter implements
 
             @Override
             public void onNext(Object o) {
-                View1.convert1(o.toString());
+                View1.convert1(o);
             }
 
             @Override
@@ -273,7 +274,7 @@ public class CommonPresenter implements
 
     @Override
     public void request2(Map<String, String> map) {
-        addSubscription(NetWorkManager.getApi().get2(map), new Observer() {
+        addSubscription(NetWorkManager.getApi().get2(map), new Observer<Object>() {
             @Override
             public void onSubscribe(Disposable d) {
                 mCompositeDisposable.add(d);
@@ -281,7 +282,7 @@ public class CommonPresenter implements
 
             @Override
             public void onNext(Object o) {
-                View2.convert2(o.toString());
+                View2.convert2(o);
             }
 
             @Override
@@ -298,8 +299,8 @@ public class CommonPresenter implements
     }
 
     @Override
-    public void request3(HashMap<String, Object> map) {
-        addSubscription(NetWorkManager.getApi().get3(map), new Observer() {
+    public void request3(Map<String, Object> map) {
+        addSubscription(NetWorkManager.getApi().get3(map), new Observer<Object>() {
             @Override
             public void onSubscribe(Disposable d) {
                 mCompositeDisposable.add(d);
@@ -307,7 +308,7 @@ public class CommonPresenter implements
 
             @Override
             public void onNext(Object o) {
-                View3.convert3(o.toString());
+                View3.convert3(o);
             }
 
             @Override
@@ -324,8 +325,8 @@ public class CommonPresenter implements
     }
 
     @Override
-    public void request4(HashMap<String, Object> map) {
-        addSubscription(NetWorkManager.getApi().get4(map), new Observer() {
+    public void request4(Map<String, Object> map) {
+        addSubscription(NetWorkManager.getApi().get4(map), new Observer<Object>() {
             @Override
             public void onSubscribe(Disposable d) {
                 mCompositeDisposable.add(d);
@@ -333,7 +334,7 @@ public class CommonPresenter implements
 
             @Override
             public void onNext(Object o) {
-                View4.convert4(o.toString());
+                View4.convert4(o);
             }
 
             @Override
@@ -350,8 +351,8 @@ public class CommonPresenter implements
     }
 
     @Override
-    public void request5(HashMap<String, Object> map) {
-        addSubscription(NetWorkManager.getApi().get5(map), new Observer() {
+    public void request5(Map<String, Object> map) {
+        addSubscription(NetWorkManager.getApi().get5(map), new Observer<Object>() {
             @Override
             public void onSubscribe(Disposable d) {
                 mCompositeDisposable.add(d);
@@ -359,7 +360,7 @@ public class CommonPresenter implements
 
             @Override
             public void onNext(Object o) {
-                View5.convert5(o.toString());
+                View5.convert5(o);
             }
 
             @Override
@@ -377,8 +378,8 @@ public class CommonPresenter implements
 
 
     @Override
-    public void request6(HashMap<String, Object> map) {
-        addSubscription(NetWorkManager.getApi().get6(map), new Observer() {
+    public void request6(Map<String, Object> map) {
+        addSubscription(NetWorkManager.getApi().get6(map), new Observer<Object>() {
             @Override
             public void onSubscribe(Disposable d) {
                 mCompositeDisposable.add(d);
@@ -386,7 +387,7 @@ public class CommonPresenter implements
 
             @Override
             public void onNext(Object o) {
-                View6.convert6(o.toString());
+                View6.convert6(o);
             }
 
             @Override
@@ -404,8 +405,8 @@ public class CommonPresenter implements
 
 
     @Override
-    public void request7(HashMap<String, Object> map) {
-        addSubscription(NetWorkManager.getApi().get7(map), new Observer() {
+    public void request7(Map<String, Object> map) {
+        addSubscription(NetWorkManager.getApi().get7(map), new Observer<Object>() {
             @Override
             public void onSubscribe(Disposable d) {
                 mCompositeDisposable.add(d);
@@ -413,7 +414,7 @@ public class CommonPresenter implements
 
             @Override
             public void onNext(Object o) {
-                View7.convert7(o.toString());
+                View7.convert7(o);
             }
 
             @Override
@@ -431,8 +432,8 @@ public class CommonPresenter implements
 
 
     @Override
-    public void request8(HashMap<String, Object> map) {
-        addSubscription(NetWorkManager.getApi().get8(map), new Observer() {
+    public void request8(Map<String, Object> map) {
+        addSubscription(NetWorkManager.getApi().get8(map), new Observer<Object>() {
             @Override
             public void onSubscribe(Disposable d) {
                 mCompositeDisposable.add(d);
@@ -440,7 +441,7 @@ public class CommonPresenter implements
 
             @Override
             public void onNext(Object o) {
-                View8.convert8(o.toString());
+                View8.convert8(o);
             }
 
             @Override
@@ -458,8 +459,8 @@ public class CommonPresenter implements
 
 
     @Override
-    public void request9(HashMap<String, Object> map) {
-        addSubscription(NetWorkManager.getApi().get9(map), new Observer() {
+    public void request9(Map<String, Object> map) {
+        addSubscription(NetWorkManager.getApi().get9(map), new Observer<Object>() {
             @Override
             public void onSubscribe(Disposable d) {
                 mCompositeDisposable.add(d);
@@ -467,7 +468,7 @@ public class CommonPresenter implements
 
             @Override
             public void onNext(Object o) {
-                View9.convert9(o.toString());
+                View9.convert9(o);
             }
 
             @Override
@@ -485,8 +486,8 @@ public class CommonPresenter implements
 
 
     @Override
-    public void request10(HashMap<String, Object> map) {
-        addSubscription(NetWorkManager.getApi().get10(map), new Observer() {
+    public void request10(Map<String, Object> map) {
+        addSubscription(NetWorkManager.getApi().get10(map), new Observer<Object>() {
             @Override
             public void onSubscribe(Disposable d) {
                 mCompositeDisposable.add(d);
@@ -494,7 +495,7 @@ public class CommonPresenter implements
 
             @Override
             public void onNext(Object o) {
-                View10.convert10(o.toString());
+                View10.convert10(o);
             }
 
             @Override
@@ -512,8 +513,8 @@ public class CommonPresenter implements
 
 
     @Override
-    public void request11(HashMap<String, Object> map) {
-        addSubscription(NetWorkManager.getApi().get11(map), new Observer() {
+    public void request11(Map<String, Object> map) {
+        addSubscription(NetWorkManager.getApi().get11(map), new Observer<Object>() {
             @Override
             public void onSubscribe(Disposable d) {
                 mCompositeDisposable.add(d);
@@ -521,7 +522,7 @@ public class CommonPresenter implements
 
             @Override
             public void onNext(Object o) {
-                View11.convert11(o.toString());
+                View11.convert11(o);
             }
 
             @Override
@@ -539,8 +540,8 @@ public class CommonPresenter implements
 
 
     @Override
-    public void request12(HashMap<String, Object> map) {
-        addSubscription(NetWorkManager.getApi().get12(map), new Observer() {
+    public void request12(Map<String, Object> map) {
+        addSubscription(NetWorkManager.getApi().get12(map), new Observer<Object>() {
             @Override
             public void onSubscribe(Disposable d) {
                 mCompositeDisposable.add(d);
@@ -548,7 +549,7 @@ public class CommonPresenter implements
 
             @Override
             public void onNext(Object o) {
-                View12.convert12(o.toString());
+                View12.convert12(o);
             }
 
             @Override
@@ -566,8 +567,8 @@ public class CommonPresenter implements
 
 
     @Override
-    public void request13(HashMap<String, Object> map) {
-        addSubscription(NetWorkManager.getApi().get13(map), new Observer() {
+    public void request13(Map<String, Object> map) {
+        addSubscription(NetWorkManager.getApi().get13(map), new Observer<Object>() {
             @Override
             public void onSubscribe(Disposable d) {
                 mCompositeDisposable.add(d);
@@ -575,7 +576,7 @@ public class CommonPresenter implements
 
             @Override
             public void onNext(Object o) {
-                View13.convert13(o.toString());
+                View13.convert13(o);
             }
 
             @Override
@@ -593,8 +594,8 @@ public class CommonPresenter implements
 
 
     @Override
-    public void request14(HashMap<String, Object> map) {
-        addSubscription(NetWorkManager.getApi().get14(map), new Observer() {
+    public void request14(Map<String, Object> map) {
+        addSubscription(NetWorkManager.getApi().get14(map), new Observer<Object>() {
             @Override
             public void onSubscribe(Disposable d) {
                 mCompositeDisposable.add(d);
@@ -602,7 +603,7 @@ public class CommonPresenter implements
 
             @Override
             public void onNext(Object o) {
-                View14.convert14(o.toString());
+                View14.convert14(o);
             }
 
             @Override
@@ -620,8 +621,8 @@ public class CommonPresenter implements
 
 
     @Override
-    public void request15(HashMap<String, Object> map) {
-        addSubscription(NetWorkManager.getApi().get15(map), new Observer() {
+    public void request15(Map<String, Object> map) {
+        addSubscription(NetWorkManager.getApi().get15(map), new Observer<Object>() {
             @Override
             public void onSubscribe(Disposable d) {
                 mCompositeDisposable.add(d);
@@ -629,7 +630,7 @@ public class CommonPresenter implements
 
             @Override
             public void onNext(Object o) {
-                View15.convert15(o.toString());
+                View15.convert15(o);
             }
 
             @Override
@@ -647,8 +648,8 @@ public class CommonPresenter implements
 
 
     @Override
-    public void request16(HashMap<String, Object> map) {
-        addSubscription(NetWorkManager.getApi().get16(map), new Observer() {
+    public void request16(Map<String, Object> map) {
+        addSubscription(NetWorkManager.getApi().get16(map), new Observer<Object>() {
             @Override
             public void onSubscribe(Disposable d) {
                 mCompositeDisposable.add(d);
@@ -656,7 +657,7 @@ public class CommonPresenter implements
 
             @Override
             public void onNext(Object o) {
-                View16.convert16(o.toString());
+                View16.convert16(o);
             }
 
             @Override
@@ -674,8 +675,8 @@ public class CommonPresenter implements
 
 
     @Override
-    public void request17(HashMap<String, Object> map) {
-        addSubscription(NetWorkManager.getApi().get17(map), new Observer() {
+    public void request17(Map<String, Object> map) {
+        addSubscription(NetWorkManager.getApi().get17(map), new Observer<Object>() {
             @Override
             public void onSubscribe(Disposable d) {
                 mCompositeDisposable.add(d);
@@ -683,7 +684,7 @@ public class CommonPresenter implements
 
             @Override
             public void onNext(Object o) {
-                View17.convert17(o.toString());
+                View17.convert17(o);
             }
 
             @Override
@@ -701,8 +702,8 @@ public class CommonPresenter implements
 
 
     @Override
-    public void request18(HashMap<String, Object> map) {
-        addSubscription(NetWorkManager.getApi().get18(map), new Observer() {
+    public void request18(Map<String, Object> map) {
+        addSubscription(NetWorkManager.getApi().get18(map), new Observer<Object>() {
             @Override
             public void onSubscribe(Disposable d) {
                 mCompositeDisposable.add(d);
@@ -710,7 +711,7 @@ public class CommonPresenter implements
 
             @Override
             public void onNext(Object o) {
-                View18.convert18(o.toString());
+                View18.convert18(o);
             }
 
             @Override
@@ -728,8 +729,8 @@ public class CommonPresenter implements
 
 
     @Override
-    public void request19(HashMap<String, Object> map) {
-        addSubscription(NetWorkManager.getApi().get19(map), new Observer() {
+    public void request19(Map<String, Object> map) {
+        addSubscription(NetWorkManager.getApi().get19(map), new Observer<Object>() {
             @Override
             public void onSubscribe(Disposable d) {
                 mCompositeDisposable.add(d);
@@ -737,7 +738,7 @@ public class CommonPresenter implements
 
             @Override
             public void onNext(Object o) {
-                View19.convert19(o.toString());
+                View19.convert19(o);
             }
 
             @Override
@@ -755,8 +756,8 @@ public class CommonPresenter implements
 
 
     @Override
-    public void request20(HashMap<String, Object> map) {
-        addSubscription(NetWorkManager.getApi().get20(map), new Observer() {
+    public void request20(Map<String, Object> map) {
+        addSubscription(NetWorkManager.getApi().get20(map), new Observer<Object>() {
             @Override
             public void onSubscribe(Disposable d) {
                 mCompositeDisposable.add(d);
@@ -764,7 +765,7 @@ public class CommonPresenter implements
 
             @Override
             public void onNext(Object o) {
-                View20.convert20(o.toString());
+                View20.convert20(o);
             }
 
             @Override
@@ -782,8 +783,8 @@ public class CommonPresenter implements
 
 
     @Override
-    public void request21(HashMap<String, Object> map) {
-        addSubscription(NetWorkManager.getApi().get21(map), new Observer() {
+    public void request21(Map<String, Object> map) {
+        addSubscription(NetWorkManager.getApi().get21(map), new Observer<Object>() {
             @Override
             public void onSubscribe(Disposable d) {
                 mCompositeDisposable.add(d);
@@ -791,7 +792,7 @@ public class CommonPresenter implements
 
             @Override
             public void onNext(Object o) {
-                View21.convert21(o.toString());
+                View21.convert21(o);
             }
 
             @Override
@@ -809,8 +810,8 @@ public class CommonPresenter implements
 
 
     @Override
-    public void request22(HashMap<String, Object> map) {
-        addSubscription(NetWorkManager.getApi().get22(map), new Observer() {
+    public void request22(Map<String, Object> map) {
+        addSubscription(NetWorkManager.getApi().get22(map), new Observer<Object>() {
             @Override
             public void onSubscribe(Disposable d) {
                 mCompositeDisposable.add(d);
@@ -818,7 +819,7 @@ public class CommonPresenter implements
 
             @Override
             public void onNext(Object o) {
-                View22.convert22(o.toString());
+                View22.convert22(o);
             }
 
             @Override
@@ -836,8 +837,8 @@ public class CommonPresenter implements
 
 
     @Override
-    public void request23(HashMap<String, Object> map) {
-        addSubscription(NetWorkManager.getApi().get23(map), new Observer() {
+    public void request23(Map<String, Object> map) {
+        addSubscription(NetWorkManager.getApi().get23(map), new Observer<Object>() {
             @Override
             public void onSubscribe(Disposable d) {
                 mCompositeDisposable.add(d);
@@ -845,7 +846,7 @@ public class CommonPresenter implements
 
             @Override
             public void onNext(Object o) {
-                View23.convert23(o.toString());
+                View23.convert23(o);
             }
 
             @Override
@@ -863,8 +864,8 @@ public class CommonPresenter implements
 
 
     @Override
-    public void request24(HashMap<String, Object> map) {
-        addSubscription(NetWorkManager.getApi().get24(map), new Observer() {
+    public void request24(Map<String, Object> map) {
+        addSubscription(NetWorkManager.getApi().get24(map), new Observer<Object>() {
             @Override
             public void onSubscribe(Disposable d) {
                 mCompositeDisposable.add(d);
@@ -872,7 +873,7 @@ public class CommonPresenter implements
 
             @Override
             public void onNext(Object o) {
-                View24.convert24(o.toString());
+                View24.convert24(o);
             }
 
             @Override
@@ -890,8 +891,8 @@ public class CommonPresenter implements
 
 
     @Override
-    public void request25(HashMap<String, Object> map) {
-        addSubscription(NetWorkManager.getApi().get25(map), new Observer() {
+    public void request25(Map<String, Object> map) {
+        addSubscription(NetWorkManager.getApi().get25(map), new Observer<Object>() {
             @Override
             public void onSubscribe(Disposable d) {
                 mCompositeDisposable.add(d);
@@ -899,7 +900,7 @@ public class CommonPresenter implements
 
             @Override
             public void onNext(Object o) {
-                View25.convert25(o.toString());
+                View25.convert25(o);
             }
 
             @Override
@@ -917,8 +918,8 @@ public class CommonPresenter implements
 
 
     @Override
-    public void request26(HashMap<String, Object> map) {
-        addSubscription(NetWorkManager.getApi().get26(map), new Observer() {
+    public void request26(Map<String, Object> map) {
+        addSubscription(NetWorkManager.getApi().get26(map), new Observer<Object>() {
             @Override
             public void onSubscribe(Disposable d) {
                 mCompositeDisposable.add(d);
@@ -926,7 +927,7 @@ public class CommonPresenter implements
 
             @Override
             public void onNext(Object o) {
-                View26.convert26(o.toString());
+                View26.convert26(o);
             }
 
             @Override
@@ -944,8 +945,8 @@ public class CommonPresenter implements
 
 
     @Override
-    public void request27(HashMap<String, Object> map) {
-        addSubscription(NetWorkManager.getApi().get27(map), new Observer() {
+    public void request27(Map<String, Object> map) {
+        addSubscription(NetWorkManager.getApi().get27(map), new Observer<Object>() {
             @Override
             public void onSubscribe(Disposable d) {
                 mCompositeDisposable.add(d);
@@ -953,7 +954,7 @@ public class CommonPresenter implements
 
             @Override
             public void onNext(Object o) {
-                View27.convert27(o.toString());
+                View27.convert27(o);
             }
 
             @Override
@@ -971,8 +972,8 @@ public class CommonPresenter implements
 
 
     @Override
-    public void request28(HashMap<String, Object> map) {
-        addSubscription(NetWorkManager.getApi().get28(map), new Observer() {
+    public void request28(Map<String, Object> map) {
+        addSubscription(NetWorkManager.getApi().get28(map), new Observer<Object>() {
             @Override
             public void onSubscribe(Disposable d) {
                 mCompositeDisposable.add(d);
@@ -980,7 +981,7 @@ public class CommonPresenter implements
 
             @Override
             public void onNext(Object o) {
-                View28.convert28(o.toString());
+                View28.convert28(o);
             }
 
             @Override
@@ -998,8 +999,8 @@ public class CommonPresenter implements
 
 
     @Override
-    public void request29(HashMap<String, Object> map) {
-        addSubscription(NetWorkManager.getApi().get29(map), new Observer() {
+    public void request29(Map<String, Object> map) {
+        addSubscription(NetWorkManager.getApi().get29(map), new Observer<Object>() {
             @Override
             public void onSubscribe(Disposable d) {
                 mCompositeDisposable.add(d);
@@ -1007,7 +1008,7 @@ public class CommonPresenter implements
 
             @Override
             public void onNext(Object o) {
-                View29.convert29(o.toString());
+                View29.convert29(o);
             }
 
             @Override
@@ -1025,8 +1026,8 @@ public class CommonPresenter implements
 
 
     @Override
-    public void request30(HashMap<String, Object> map) {
-        addSubscription(NetWorkManager.getApi().get30(map), new Observer() {
+    public void request30(Map<String, Object> map) {
+        addSubscription(NetWorkManager.getApi().get30(map), new Observer<Object>() {
             @Override
             public void onSubscribe(Disposable d) {
                 mCompositeDisposable.add(d);
@@ -1034,7 +1035,7 @@ public class CommonPresenter implements
 
             @Override
             public void onNext(Object o) {
-                View30.convert30(o.toString());
+                View30.convert30(o);
             }
 
             @Override
@@ -1052,8 +1053,8 @@ public class CommonPresenter implements
 
 
     @Override
-    public void request31(HashMap<String, Object> map) {
-        addSubscription(NetWorkManager.getApi().get31(map), new Observer() {
+    public void request31(Map<String, Object> map) {
+        addSubscription(NetWorkManager.getApi().get31(map), new Observer<Object>() {
             @Override
             public void onSubscribe(Disposable d) {
                 mCompositeDisposable.add(d);
@@ -1061,7 +1062,7 @@ public class CommonPresenter implements
 
             @Override
             public void onNext(Object o) {
-                View31.convert31(o.toString());
+                View31.convert31(o);
             }
 
             @Override
@@ -1079,8 +1080,8 @@ public class CommonPresenter implements
 
 
     @Override
-    public void request32(HashMap<String, Object> map) {
-        addSubscription(NetWorkManager.getApi().get32(map), new Observer() {
+    public void request32(Map<String, Object> map) {
+        addSubscription(NetWorkManager.getApi().get32(map), new Observer<Object>() {
             @Override
             public void onSubscribe(Disposable d) {
                 mCompositeDisposable.add(d);
@@ -1088,7 +1089,7 @@ public class CommonPresenter implements
 
             @Override
             public void onNext(Object o) {
-                View32.convert32(o.toString());
+                View32.convert32(o);
             }
 
             @Override
@@ -1106,8 +1107,8 @@ public class CommonPresenter implements
 
 
     @Override
-    public void request33(HashMap<String, Object> map) {
-        addSubscription(NetWorkManager.getApi().get33(map), new Observer() {
+    public void request33(Map<String, Object> map) {
+        addSubscription(NetWorkManager.getApi().get33(map), new Observer<Object>() {
             @Override
             public void onSubscribe(Disposable d) {
                 mCompositeDisposable.add(d);
@@ -1115,7 +1116,7 @@ public class CommonPresenter implements
 
             @Override
             public void onNext(Object o) {
-                View33.convert33(o.toString());
+                View33.convert33(o);
             }
 
             @Override
@@ -1133,8 +1134,8 @@ public class CommonPresenter implements
 
 
     @Override
-    public void request34(HashMap<String, Object> map) {
-        addSubscription(NetWorkManager.getApi().get34(map), new Observer() {
+    public void request34(Map<String, Object> map) {
+        addSubscription(NetWorkManager.getApi().get34(map), new Observer<Object>() {
             @Override
             public void onSubscribe(Disposable d) {
                 mCompositeDisposable.add(d);
@@ -1142,7 +1143,7 @@ public class CommonPresenter implements
 
             @Override
             public void onNext(Object o) {
-                View34.convert34(o.toString());
+                View34.convert34(o);
             }
 
             @Override
@@ -1160,8 +1161,8 @@ public class CommonPresenter implements
 
 
     @Override
-    public void request35(HashMap<String, Object> map) {
-        addSubscription(NetWorkManager.getApi().get35(map), new Observer() {
+    public void request35(Map<String, Object> map) {
+        addSubscription(NetWorkManager.getApi().get35(map), new Observer<Object>() {
             @Override
             public void onSubscribe(Disposable d) {
                 mCompositeDisposable.add(d);
@@ -1169,7 +1170,7 @@ public class CommonPresenter implements
 
             @Override
             public void onNext(Object o) {
-                View35.convert35(o.toString());
+                View35.convert35(o);
             }
 
             @Override
@@ -1187,8 +1188,8 @@ public class CommonPresenter implements
 
 
     @Override
-    public void request36(HashMap<String, Object> map) {
-        addSubscription(NetWorkManager.getApi().get36(map), new Observer() {
+    public void request36(Map<String, Object> map) {
+        addSubscription(NetWorkManager.getApi().get36(map), new Observer<Object>() {
             @Override
             public void onSubscribe(Disposable d) {
                 mCompositeDisposable.add(d);
@@ -1196,7 +1197,7 @@ public class CommonPresenter implements
 
             @Override
             public void onNext(Object o) {
-                View36.convert36(o.toString());
+                View36.convert36(o);
             }
 
             @Override
@@ -1214,8 +1215,8 @@ public class CommonPresenter implements
 
 
     @Override
-    public void request37(HashMap<String, Object> map) {
-        addSubscription(NetWorkManager.getApi().get37(map), new Observer() {
+    public void request37(Map<String, Object> map) {
+        addSubscription(NetWorkManager.getApi().get37(map), new Observer<Object>() {
             @Override
             public void onSubscribe(Disposable d) {
                 mCompositeDisposable.add(d);
@@ -1223,7 +1224,7 @@ public class CommonPresenter implements
 
             @Override
             public void onNext(Object o) {
-                View37.convert37(o.toString());
+                View37.convert37(o);
             }
 
             @Override
@@ -1241,8 +1242,8 @@ public class CommonPresenter implements
 
 
     @Override
-    public void request38(HashMap<String, Object> map) {
-        addSubscription(NetWorkManager.getApi().get38(map), new Observer() {
+    public void request38(Map<String, Object> map) {
+        addSubscription(NetWorkManager.getApi().get38(map), new Observer<Object>() {
             @Override
             public void onSubscribe(Disposable d) {
                 mCompositeDisposable.add(d);
@@ -1250,7 +1251,7 @@ public class CommonPresenter implements
 
             @Override
             public void onNext(Object o) {
-                View38.convert38(o.toString());
+                View38.convert38(o);
             }
 
             @Override
@@ -1268,8 +1269,8 @@ public class CommonPresenter implements
 
 
     @Override
-    public void request39(HashMap<String, Object> map) {
-        addSubscription(NetWorkManager.getApi().get39(map), new Observer() {
+    public void request39(Map<String, Object> map) {
+        addSubscription(NetWorkManager.getApi().get39(map), new Observer<Object>() {
             @Override
             public void onSubscribe(Disposable d) {
                 mCompositeDisposable.add(d);
@@ -1277,7 +1278,7 @@ public class CommonPresenter implements
 
             @Override
             public void onNext(Object o) {
-                View39.convert39(o.toString());
+                View39.convert39(o);
             }
 
             @Override
@@ -1295,8 +1296,8 @@ public class CommonPresenter implements
 
 
     @Override
-    public void request40(HashMap<String, Object> map) {
-        addSubscription(NetWorkManager.getApi().get40(map), new Observer() {
+    public void request40(Map<String, Object> map) {
+        addSubscription(NetWorkManager.getApi().get40(map), new Observer<Object>() {
             @Override
             public void onSubscribe(Disposable d) {
                 mCompositeDisposable.add(d);
@@ -1304,7 +1305,7 @@ public class CommonPresenter implements
 
             @Override
             public void onNext(Object o) {
-                View40.convert40(o.toString());
+                View40.convert40(o);
             }
 
             @Override
@@ -1322,8 +1323,8 @@ public class CommonPresenter implements
 
 
     @Override
-    public void request41(HashMap<String, Object> map) {
-        addSubscription(NetWorkManager.getApi().get41(map), new Observer() {
+    public void request41(Map<String, Object> map) {
+        addSubscription(NetWorkManager.getApi().get41(map), new Observer<Object>() {
             @Override
             public void onSubscribe(Disposable d) {
                 mCompositeDisposable.add(d);
@@ -1331,7 +1332,7 @@ public class CommonPresenter implements
 
             @Override
             public void onNext(Object o) {
-                View41.convert41(o.toString());
+                View41.convert41(o);
             }
 
             @Override
@@ -1349,8 +1350,8 @@ public class CommonPresenter implements
 
 
     @Override
-    public void request42(HashMap<String, Object> map) {
-        addSubscription(NetWorkManager.getApi().get42(map), new Observer() {
+    public void request42(Map<String, Object> map) {
+        addSubscription(NetWorkManager.getApi().get42(map), new Observer<Object>() {
             @Override
             public void onSubscribe(Disposable d) {
                 mCompositeDisposable.add(d);
@@ -1358,7 +1359,7 @@ public class CommonPresenter implements
 
             @Override
             public void onNext(Object o) {
-                View42.convert42(o.toString());
+                View42.convert42(o);
             }
 
             @Override
@@ -1376,8 +1377,8 @@ public class CommonPresenter implements
 
 
     @Override
-    public void request43(HashMap<String, Object> map) {
-        addSubscription(NetWorkManager.getApi().get43(map), new Observer() {
+    public void request43(Map<String, Object> map) {
+        addSubscription(NetWorkManager.getApi().get43(map), new Observer<Object>() {
             @Override
             public void onSubscribe(Disposable d) {
                 mCompositeDisposable.add(d);
@@ -1385,7 +1386,7 @@ public class CommonPresenter implements
 
             @Override
             public void onNext(Object o) {
-                View43.convert43(o.toString());
+                View43.convert43(o);
             }
 
             @Override
@@ -1403,8 +1404,8 @@ public class CommonPresenter implements
 
 
     @Override
-    public void request44(HashMap<String, Object> map) {
-        addSubscription(NetWorkManager.getApi().get44(map), new Observer() {
+    public void request44(Map<String, Object> map) {
+        addSubscription(NetWorkManager.getApi().get44(map), new Observer<Object>() {
             @Override
             public void onSubscribe(Disposable d) {
                 mCompositeDisposable.add(d);
@@ -1412,7 +1413,7 @@ public class CommonPresenter implements
 
             @Override
             public void onNext(Object o) {
-                View44.convert44(o.toString());
+                View44.convert44(o);
             }
 
             @Override
@@ -1430,8 +1431,8 @@ public class CommonPresenter implements
 
 
     @Override
-    public void request45(HashMap<String, Object> map) {
-        addSubscription(NetWorkManager.getApi().get45(map), new Observer() {
+    public void request45(Map<String, Object> map) {
+        addSubscription(NetWorkManager.getApi().get45(map), new Observer<Object>() {
             @Override
             public void onSubscribe(Disposable d) {
                 mCompositeDisposable.add(d);
@@ -1439,7 +1440,7 @@ public class CommonPresenter implements
 
             @Override
             public void onNext(Object o) {
-                View45.convert45(o.toString());
+                View45.convert45(o);
             }
 
             @Override
@@ -1457,8 +1458,8 @@ public class CommonPresenter implements
 
 
     @Override
-    public void request46(HashMap<String, Object> map) {
-        addSubscription(NetWorkManager.getApi().get46(map), new Observer() {
+    public void request46(Map<String, Object> map) {
+        addSubscription(NetWorkManager.getApi().get46(map), new Observer<Object>() {
             @Override
             public void onSubscribe(Disposable d) {
                 mCompositeDisposable.add(d);
@@ -1466,7 +1467,7 @@ public class CommonPresenter implements
 
             @Override
             public void onNext(Object o) {
-                View46.convert46(o.toString());
+                View46.convert46(o);
             }
 
             @Override
@@ -1484,8 +1485,8 @@ public class CommonPresenter implements
 
 
     @Override
-    public void request47(HashMap<String, Object> map) {
-        addSubscription(NetWorkManager.getApi().get47(map), new Observer() {
+    public void request47(Map<String, Object> map) {
+        addSubscription(NetWorkManager.getApi().get47(map), new Observer<Object>() {
             @Override
             public void onSubscribe(Disposable d) {
                 mCompositeDisposable.add(d);
@@ -1493,7 +1494,7 @@ public class CommonPresenter implements
 
             @Override
             public void onNext(Object o) {
-                View47.convert47(o.toString());
+                View47.convert47(o);
             }
 
             @Override
@@ -1511,8 +1512,8 @@ public class CommonPresenter implements
 
 
     @Override
-    public void request48(HashMap<String, Object> map) {
-        addSubscription(NetWorkManager.getApi().get48(map), new Observer() {
+    public void request48(Map<String, Object> map) {
+        addSubscription(NetWorkManager.getApi().get48(map), new Observer<Object>() {
             @Override
             public void onSubscribe(Disposable d) {
                 mCompositeDisposable.add(d);
@@ -1520,7 +1521,7 @@ public class CommonPresenter implements
 
             @Override
             public void onNext(Object o) {
-                View48.convert48(o.toString());
+                View48.convert48(o);
             }
 
             @Override
@@ -1538,8 +1539,8 @@ public class CommonPresenter implements
 
 
     @Override
-    public void request49(HashMap<String, Object> map) {
-        addSubscription(NetWorkManager.getApi().get49(map), new Observer() {
+    public void request49(Map<String, Object> map) {
+        addSubscription(NetWorkManager.getApi().get49(map), new Observer<Object>() {
             @Override
             public void onSubscribe(Disposable d) {
                 mCompositeDisposable.add(d);
@@ -1547,7 +1548,7 @@ public class CommonPresenter implements
 
             @Override
             public void onNext(Object o) {
-                View49.convert49(o.toString());
+                View49.convert49(o);
             }
 
             @Override
@@ -1565,8 +1566,8 @@ public class CommonPresenter implements
 
 
     @Override
-    public void request50(HashMap<String, Object> map) {
-        addSubscription(NetWorkManager.getApi().get50(map), new Observer() {
+    public void request50(Map<String, Object> map) {
+        addSubscription(NetWorkManager.getApi().get50(map), new Observer<Object>() {
             @Override
             public void onSubscribe(Disposable d) {
                 mCompositeDisposable.add(d);
@@ -1574,7 +1575,7 @@ public class CommonPresenter implements
 
             @Override
             public void onNext(Object o) {
-                View50.convert50(o.toString());
+                View50.convert50(o);
             }
 
             @Override
@@ -1592,8 +1593,8 @@ public class CommonPresenter implements
 
 
     @Override
-    public void request51(HashMap<String, Object> map) {
-        addSubscription(NetWorkManager.getApi().get51(map), new Observer() {
+    public void request51(Map<String, Object> map) {
+        addSubscription(NetWorkManager.getApi().get51(map), new Observer<Object>() {
             @Override
             public void onSubscribe(Disposable d) {
                 mCompositeDisposable.add(d);
@@ -1601,7 +1602,7 @@ public class CommonPresenter implements
 
             @Override
             public void onNext(Object o) {
-                View51.convert51(o.toString());
+                View51.convert51(o);
             }
 
             @Override
@@ -1619,8 +1620,8 @@ public class CommonPresenter implements
 
 
     @Override
-    public void request52(HashMap<String, Object> map) {
-        addSubscription(NetWorkManager.getApi().get52(map), new Observer() {
+    public void request52(Map<String, Object> map) {
+        addSubscription(NetWorkManager.getApi().get52(map), new Observer<Object>() {
             @Override
             public void onSubscribe(Disposable d) {
                 mCompositeDisposable.add(d);
@@ -1628,7 +1629,7 @@ public class CommonPresenter implements
 
             @Override
             public void onNext(Object o) {
-                View52.convert52(o.toString());
+                View52.convert52(o);
             }
 
             @Override
@@ -1646,8 +1647,8 @@ public class CommonPresenter implements
 
 
     @Override
-    public void request53(HashMap<String, Object> map) {
-        addSubscription(NetWorkManager.getApi().get53(map), new Observer() {
+    public void request53(Map<String, Object> map) {
+        addSubscription(NetWorkManager.getApi().get53(map), new Observer<Object>() {
             @Override
             public void onSubscribe(Disposable d) {
                 mCompositeDisposable.add(d);
@@ -1655,7 +1656,7 @@ public class CommonPresenter implements
 
             @Override
             public void onNext(Object o) {
-                View53.convert53(o.toString());
+                View53.convert53(o);
             }
 
             @Override
@@ -1673,8 +1674,8 @@ public class CommonPresenter implements
 
 
     @Override
-    public void request54(HashMap<String, Object> map) {
-        addSubscription(NetWorkManager.getApi().get54(map), new Observer() {
+    public void request54(Map<String, Object> map) {
+        addSubscription(NetWorkManager.getApi().get54(map), new Observer<Object>() {
             @Override
             public void onSubscribe(Disposable d) {
                 mCompositeDisposable.add(d);
@@ -1682,7 +1683,7 @@ public class CommonPresenter implements
 
             @Override
             public void onNext(Object o) {
-                View54.convert54(o.toString());
+                View54.convert54(o);
             }
 
             @Override
@@ -1700,8 +1701,8 @@ public class CommonPresenter implements
 
 
     @Override
-    public void request55(HashMap<String, Object> map) {
-        addSubscription(NetWorkManager.getApi().get55(map), new Observer() {
+    public void request55(Map<String, Object> map) {
+        addSubscription(NetWorkManager.getApi().get55(map), new Observer<Object>() {
             @Override
             public void onSubscribe(Disposable d) {
                 mCompositeDisposable.add(d);
@@ -1709,7 +1710,7 @@ public class CommonPresenter implements
 
             @Override
             public void onNext(Object o) {
-                View55.convert55(o.toString());
+                View55.convert55(o);
             }
 
             @Override
@@ -1727,8 +1728,8 @@ public class CommonPresenter implements
 
 
     @Override
-    public void request56(HashMap<String, Object> map) {
-        addSubscription(NetWorkManager.getApi().get56(map), new Observer() {
+    public void request56(Map<String, Object> map) {
+        addSubscription(NetWorkManager.getApi().get56(map), new Observer<Object>() {
             @Override
             public void onSubscribe(Disposable d) {
                 mCompositeDisposable.add(d);
@@ -1736,7 +1737,7 @@ public class CommonPresenter implements
 
             @Override
             public void onNext(Object o) {
-                View56.convert56(o.toString());
+                View56.convert56(o);
             }
 
             @Override
@@ -1754,8 +1755,8 @@ public class CommonPresenter implements
 
 
     @Override
-    public void request57(HashMap<String, Object> map) {
-        addSubscription(NetWorkManager.getApi().get57(map), new Observer() {
+    public void request57(Map<String, Object> map) {
+        addSubscription(NetWorkManager.getApi().get57(map), new Observer<Object>() {
             @Override
             public void onSubscribe(Disposable d) {
                 mCompositeDisposable.add(d);
@@ -1763,7 +1764,7 @@ public class CommonPresenter implements
 
             @Override
             public void onNext(Object o) {
-                View57.convert57(o.toString());
+                View57.convert57(o);
             }
 
             @Override
@@ -1781,8 +1782,8 @@ public class CommonPresenter implements
 
 
     @Override
-    public void request58(HashMap<String, Object> map) {
-        addSubscription(NetWorkManager.getApi().get58(map), new Observer() {
+    public void request58(Map<String, Object> map) {
+        addSubscription(NetWorkManager.getApi().get58(map), new Observer<Object>() {
             @Override
             public void onSubscribe(Disposable d) {
                 mCompositeDisposable.add(d);
@@ -1790,7 +1791,7 @@ public class CommonPresenter implements
 
             @Override
             public void onNext(Object o) {
-                View58.convert58(o.toString());
+                View58.convert58(o);
             }
 
             @Override
@@ -1808,8 +1809,8 @@ public class CommonPresenter implements
 
 
     @Override
-    public void request59(HashMap<String, Object> map) {
-        addSubscription(NetWorkManager.getApi().get59(map), new Observer() {
+    public void request59(Map<String, Object> map) {
+        addSubscription(NetWorkManager.getApi().get59(map), new Observer<Object>() {
             @Override
             public void onSubscribe(Disposable d) {
                 mCompositeDisposable.add(d);
@@ -1817,7 +1818,7 @@ public class CommonPresenter implements
 
             @Override
             public void onNext(Object o) {
-                View59.convert59(o.toString());
+                View59.convert59(o);
             }
 
             @Override
@@ -1835,8 +1836,8 @@ public class CommonPresenter implements
 
 
     @Override
-    public void request60(HashMap<String, Object> map) {
-        addSubscription(NetWorkManager.getApi().get60(map), new Observer() {
+    public void request60(Map<String, Object> map) {
+        addSubscription(NetWorkManager.getApi().get60(map), new Observer<Object>() {
             @Override
             public void onSubscribe(Disposable d) {
                 mCompositeDisposable.add(d);
@@ -1844,7 +1845,7 @@ public class CommonPresenter implements
 
             @Override
             public void onNext(Object o) {
-                View60.convert60(o.toString());
+                View60.convert60(o);
             }
 
             @Override
@@ -1862,8 +1863,8 @@ public class CommonPresenter implements
 
 
     @Override
-    public void request61(HashMap<String, Object> map) {
-        addSubscription(NetWorkManager.getApi().get61(map), new Observer() {
+    public void request61(Map<String, Object> map) {
+        addSubscription(NetWorkManager.getApi().get61(map), new Observer<Object>() {
             @Override
             public void onSubscribe(Disposable d) {
                 mCompositeDisposable.add(d);
@@ -1871,7 +1872,7 @@ public class CommonPresenter implements
 
             @Override
             public void onNext(Object o) {
-                View61.convert61(o.toString());
+                View61.convert61(o);
             }
 
             @Override
@@ -1889,8 +1890,8 @@ public class CommonPresenter implements
 
 
     @Override
-    public void request62(HashMap<String, Object> map) {
-        addSubscription(NetWorkManager.getApi().get62(map), new Observer() {
+    public void request62(Map<String, Object> map) {
+        addSubscription(NetWorkManager.getApi().get62(map), new Observer<Object>() {
             @Override
             public void onSubscribe(Disposable d) {
                 mCompositeDisposable.add(d);
@@ -1898,7 +1899,7 @@ public class CommonPresenter implements
 
             @Override
             public void onNext(Object o) {
-                View62.convert62(o.toString());
+                View62.convert62(o);
             }
 
             @Override
@@ -1916,8 +1917,8 @@ public class CommonPresenter implements
 
 
     @Override
-    public void request63(HashMap<String, Object> map) {
-        addSubscription(NetWorkManager.getApi().get63(map), new Observer() {
+    public void request63(Map<String, Object> map) {
+        addSubscription(NetWorkManager.getApi().get63(map), new Observer<Object>() {
             @Override
             public void onSubscribe(Disposable d) {
                 mCompositeDisposable.add(d);
@@ -1925,7 +1926,7 @@ public class CommonPresenter implements
 
             @Override
             public void onNext(Object o) {
-                View63.convert63(o.toString());
+                View63.convert63(o);
             }
 
             @Override
@@ -1943,8 +1944,8 @@ public class CommonPresenter implements
 
 
     @Override
-    public void request64(HashMap<String, Object> map) {
-        addSubscription(NetWorkManager.getApi().get64(map), new Observer() {
+    public void request64(Map<String, Object> map) {
+        addSubscription(NetWorkManager.getApi().get64(map), new Observer<Object>() {
             @Override
             public void onSubscribe(Disposable d) {
                 mCompositeDisposable.add(d);
@@ -1952,7 +1953,7 @@ public class CommonPresenter implements
 
             @Override
             public void onNext(Object o) {
-                View64.convert64(o.toString());
+                View64.convert64(o);
             }
 
             @Override
@@ -1970,8 +1971,8 @@ public class CommonPresenter implements
 
 
     @Override
-    public void request65(HashMap<String, Object> map) {
-        addSubscription(NetWorkManager.getApi().get65(map), new Observer() {
+    public void request65(Map<String, Object> map) {
+        addSubscription(NetWorkManager.getApi().get65(map), new Observer<Object>() {
             @Override
             public void onSubscribe(Disposable d) {
                 mCompositeDisposable.add(d);
@@ -1979,7 +1980,7 @@ public class CommonPresenter implements
 
             @Override
             public void onNext(Object o) {
-                View65.convert65(o.toString());
+                View65.convert65(o);
             }
 
             @Override
@@ -1997,8 +1998,8 @@ public class CommonPresenter implements
 
 
     @Override
-    public void request66(HashMap<String, Object> map) {
-        addSubscription(NetWorkManager.getApi().get66(map), new Observer() {
+    public void request66(Map<String, Object> map) {
+        addSubscription(NetWorkManager.getApi().get66(map), new Observer<Object>() {
             @Override
             public void onSubscribe(Disposable d) {
                 mCompositeDisposable.add(d);
@@ -2006,7 +2007,7 @@ public class CommonPresenter implements
 
             @Override
             public void onNext(Object o) {
-                View66.convert66(o.toString());
+                View66.convert66(o);
             }
 
             @Override
@@ -2024,8 +2025,8 @@ public class CommonPresenter implements
 
 
     @Override
-    public void request67(HashMap<String, Object> map) {
-        addSubscription(NetWorkManager.getApi().get67(map), new Observer() {
+    public void request67(Map<String, Object> map) {
+        addSubscription(NetWorkManager.getApi().get67(map), new Observer<Object>() {
             @Override
             public void onSubscribe(Disposable d) {
                 mCompositeDisposable.add(d);
@@ -2033,7 +2034,7 @@ public class CommonPresenter implements
 
             @Override
             public void onNext(Object o) {
-                View67.convert67(o.toString());
+                View67.convert67(o);
             }
 
             @Override
@@ -2051,8 +2052,8 @@ public class CommonPresenter implements
 
 
     @Override
-    public void request68(HashMap<String, Object> map) {
-        addSubscription(NetWorkManager.getApi().get68(map), new Observer() {
+    public void request68(Map<String, Object> map) {
+        addSubscription(NetWorkManager.getApi().get68(map), new Observer<Object>() {
             @Override
             public void onSubscribe(Disposable d) {
                 mCompositeDisposable.add(d);
@@ -2060,7 +2061,7 @@ public class CommonPresenter implements
 
             @Override
             public void onNext(Object o) {
-                View68.convert68(o.toString());
+                View68.convert68(o);
             }
 
             @Override
@@ -2078,8 +2079,8 @@ public class CommonPresenter implements
 
 
     @Override
-    public void request69(HashMap<String, Object> map) {
-        addSubscription(NetWorkManager.getApi().get69(map), new Observer() {
+    public void request69(Map<String, Object> map) {
+        addSubscription(NetWorkManager.getApi().get69(map), new Observer<Object>() {
             @Override
             public void onSubscribe(Disposable d) {
                 mCompositeDisposable.add(d);
@@ -2087,7 +2088,7 @@ public class CommonPresenter implements
 
             @Override
             public void onNext(Object o) {
-                View69.convert69(o.toString());
+                View69.convert69(o);
             }
 
             @Override
@@ -2105,8 +2106,8 @@ public class CommonPresenter implements
 
 
     @Override
-    public void request70(HashMap<String, Object> map) {
-        addSubscription(NetWorkManager.getApi().get70(map), new Observer() {
+    public void request70(Map<String, Object> map) {
+        addSubscription(NetWorkManager.getApi().get70(map), new Observer<Object>() {
             @Override
             public void onSubscribe(Disposable d) {
                 mCompositeDisposable.add(d);
@@ -2114,7 +2115,7 @@ public class CommonPresenter implements
 
             @Override
             public void onNext(Object o) {
-                View70.convert70(o.toString());
+                View70.convert70(o);
             }
 
             @Override
@@ -2132,8 +2133,8 @@ public class CommonPresenter implements
 
 
     @Override
-    public void request71(HashMap<String, Object> map) {
-        addSubscription(NetWorkManager.getApi().get71(map), new Observer() {
+    public void request71(Map<String, Object> map) {
+        addSubscription(NetWorkManager.getApi().get71(map), new Observer<Object>() {
             @Override
             public void onSubscribe(Disposable d) {
                 mCompositeDisposable.add(d);
@@ -2141,7 +2142,7 @@ public class CommonPresenter implements
 
             @Override
             public void onNext(Object o) {
-                View71.convert71(o.toString());
+                View71.convert71(o);
             }
 
             @Override
@@ -2159,8 +2160,8 @@ public class CommonPresenter implements
 
 
     @Override
-    public void request72(HashMap<String, Object> map) {
-        addSubscription(NetWorkManager.getApi().get72(map), new Observer() {
+    public void request72(Map<String, Object> map) {
+        addSubscription(NetWorkManager.getApi().get72(map), new Observer<Object>() {
             @Override
             public void onSubscribe(Disposable d) {
                 mCompositeDisposable.add(d);
@@ -2168,7 +2169,7 @@ public class CommonPresenter implements
 
             @Override
             public void onNext(Object o) {
-                View72.convert72(o.toString());
+                View72.convert72(o);
             }
 
             @Override
@@ -2186,8 +2187,8 @@ public class CommonPresenter implements
 
 
     @Override
-    public void request73(HashMap<String, Object> map) {
-        addSubscription(NetWorkManager.getApi().get73(map), new Observer() {
+    public void request73(Map<String, Object> map) {
+        addSubscription(NetWorkManager.getApi().get73(map), new Observer<Object>() {
             @Override
             public void onSubscribe(Disposable d) {
                 mCompositeDisposable.add(d);
@@ -2195,7 +2196,7 @@ public class CommonPresenter implements
 
             @Override
             public void onNext(Object o) {
-                View73.convert73(o.toString());
+                View73.convert73(o);
             }
 
             @Override
@@ -2213,8 +2214,8 @@ public class CommonPresenter implements
 
 
     @Override
-    public void request74(HashMap<String, Object> map) {
-        addSubscription(NetWorkManager.getApi().get74(map), new Observer() {
+    public void request74(Map<String, Object> map) {
+        addSubscription(NetWorkManager.getApi().get74(map), new Observer<Object>() {
             @Override
             public void onSubscribe(Disposable d) {
                 mCompositeDisposable.add(d);
@@ -2222,7 +2223,7 @@ public class CommonPresenter implements
 
             @Override
             public void onNext(Object o) {
-                View74.convert74(o.toString());
+                View74.convert74(o);
             }
 
             @Override
@@ -2240,8 +2241,8 @@ public class CommonPresenter implements
 
 
     @Override
-    public void request75(HashMap<String, Object> map) {
-        addSubscription(NetWorkManager.getApi().get75(map), new Observer() {
+    public void request75(Map<String, Object> map) {
+        addSubscription(NetWorkManager.getApi().get75(map), new Observer<Object>() {
             @Override
             public void onSubscribe(Disposable d) {
                 mCompositeDisposable.add(d);
@@ -2249,7 +2250,7 @@ public class CommonPresenter implements
 
             @Override
             public void onNext(Object o) {
-                View75.convert75(o.toString());
+                View75.convert75(o);
             }
 
             @Override
@@ -2267,8 +2268,8 @@ public class CommonPresenter implements
 
 
     @Override
-    public void request76(HashMap<String, Object> map) {
-        addSubscription(NetWorkManager.getApi().get76(map), new Observer() {
+    public void request76(Map<String, Object> map) {
+        addSubscription(NetWorkManager.getApi().get76(map), new Observer<Object>() {
             @Override
             public void onSubscribe(Disposable d) {
                 mCompositeDisposable.add(d);
@@ -2276,7 +2277,7 @@ public class CommonPresenter implements
 
             @Override
             public void onNext(Object o) {
-                View76.convert76(o.toString());
+                View76.convert76(o);
             }
 
             @Override
@@ -2294,8 +2295,8 @@ public class CommonPresenter implements
 
 
     @Override
-    public void request77(HashMap<String, Object> map) {
-        addSubscription(NetWorkManager.getApi().get77(map), new Observer() {
+    public void request77(Map<String, Object> map) {
+        addSubscription(NetWorkManager.getApi().get77(map), new Observer<Object>() {
             @Override
             public void onSubscribe(Disposable d) {
                 mCompositeDisposable.add(d);
@@ -2303,7 +2304,7 @@ public class CommonPresenter implements
 
             @Override
             public void onNext(Object o) {
-                View77.convert77(o.toString());
+                View77.convert77(o);
             }
 
             @Override
@@ -2321,8 +2322,8 @@ public class CommonPresenter implements
 
 
     @Override
-    public void request78(HashMap<String, Object> map) {
-        addSubscription(NetWorkManager.getApi().get78(map), new Observer() {
+    public void request78(Map<String, Object> map) {
+        addSubscription(NetWorkManager.getApi().get78(map), new Observer<Object>() {
             @Override
             public void onSubscribe(Disposable d) {
                 mCompositeDisposable.add(d);
@@ -2330,7 +2331,7 @@ public class CommonPresenter implements
 
             @Override
             public void onNext(Object o) {
-                View78.convert78(o.toString());
+                View78.convert78(o);
             }
 
             @Override
@@ -2348,8 +2349,8 @@ public class CommonPresenter implements
 
 
     @Override
-    public void request79(HashMap<String, Object> map) {
-        addSubscription(NetWorkManager.getApi().get79(map), new Observer() {
+    public void request79(Map<String, Object> map) {
+        addSubscription(NetWorkManager.getApi().get79(map), new Observer<Object>() {
             @Override
             public void onSubscribe(Disposable d) {
                 mCompositeDisposable.add(d);
@@ -2357,7 +2358,7 @@ public class CommonPresenter implements
 
             @Override
             public void onNext(Object o) {
-                View79.convert79(o.toString());
+                View79.convert79(o);
             }
 
             @Override
@@ -2375,8 +2376,8 @@ public class CommonPresenter implements
 
 
     @Override
-    public void request80(HashMap<String, Object> map) {
-        addSubscription(NetWorkManager.getApi().get80(map), new Observer() {
+    public void request80(Map<String, Object> map) {
+        addSubscription(NetWorkManager.getApi().get80(map), new Observer<Object>() {
             @Override
             public void onSubscribe(Disposable d) {
                 mCompositeDisposable.add(d);
@@ -2384,7 +2385,7 @@ public class CommonPresenter implements
 
             @Override
             public void onNext(Object o) {
-                View80.convert80(o.toString());
+                View80.convert80(o);
             }
 
             @Override
@@ -2402,8 +2403,8 @@ public class CommonPresenter implements
 
 
     @Override
-    public void request81(HashMap<String, Object> map) {
-        addSubscription(NetWorkManager.getApi().get81(map), new Observer() {
+    public void request81(Map<String, Object> map) {
+        addSubscription(NetWorkManager.getApi().get81(map), new Observer<Object>() {
             @Override
             public void onSubscribe(Disposable d) {
                 mCompositeDisposable.add(d);
@@ -2411,7 +2412,7 @@ public class CommonPresenter implements
 
             @Override
             public void onNext(Object o) {
-                View81.convert81(o.toString());
+                View81.convert81(o);
             }
 
             @Override
@@ -2429,8 +2430,8 @@ public class CommonPresenter implements
 
 
     @Override
-    public void request82(HashMap<String, Object> map) {
-        addSubscription(NetWorkManager.getApi().get82(map), new Observer() {
+    public void request82(Map<String, Object> map) {
+        addSubscription(NetWorkManager.getApi().get82(map), new Observer<Object>() {
             @Override
             public void onSubscribe(Disposable d) {
                 mCompositeDisposable.add(d);
@@ -2438,7 +2439,7 @@ public class CommonPresenter implements
 
             @Override
             public void onNext(Object o) {
-                View82.convert82(o.toString());
+                View82.convert82(o);
             }
 
             @Override
@@ -2456,8 +2457,8 @@ public class CommonPresenter implements
 
 
     @Override
-    public void request83(HashMap<String, Object> map) {
-        addSubscription(NetWorkManager.getApi().get83(map), new Observer() {
+    public void request83(Map<String, Object> map) {
+        addSubscription(NetWorkManager.getApi().get83(map), new Observer<Object>() {
             @Override
             public void onSubscribe(Disposable d) {
                 mCompositeDisposable.add(d);
@@ -2465,7 +2466,7 @@ public class CommonPresenter implements
 
             @Override
             public void onNext(Object o) {
-                View83.convert83(o.toString());
+                View83.convert83(o);
             }
 
             @Override
@@ -2483,8 +2484,8 @@ public class CommonPresenter implements
 
 
     @Override
-    public void request84(HashMap<String, Object> map) {
-        addSubscription(NetWorkManager.getApi().get84(map), new Observer() {
+    public void request84(Map<String, Object> map) {
+        addSubscription(NetWorkManager.getApi().get84(map), new Observer<Object>() {
             @Override
             public void onSubscribe(Disposable d) {
                 mCompositeDisposable.add(d);
@@ -2492,7 +2493,7 @@ public class CommonPresenter implements
 
             @Override
             public void onNext(Object o) {
-                View84.convert84(o.toString());
+                View84.convert84(o);
             }
 
             @Override
@@ -2510,8 +2511,8 @@ public class CommonPresenter implements
 
 
     @Override
-    public void request85(HashMap<String, Object> map) {
-        addSubscription(NetWorkManager.getApi().get85(map), new Observer() {
+    public void request85(Map<String, Object> map) {
+        addSubscription(NetWorkManager.getApi().get85(map), new Observer<Object>() {
             @Override
             public void onSubscribe(Disposable d) {
                 mCompositeDisposable.add(d);
@@ -2519,7 +2520,7 @@ public class CommonPresenter implements
 
             @Override
             public void onNext(Object o) {
-                View85.convert85(o.toString());
+                View85.convert85(o);
             }
 
             @Override
@@ -2537,8 +2538,8 @@ public class CommonPresenter implements
 
 
     @Override
-    public void request86(HashMap<String, Object> map) {
-        addSubscription(NetWorkManager.getApi().get86(map), new Observer() {
+    public void request86(Map<String, Object> map) {
+        addSubscription(NetWorkManager.getApi().get86(map), new Observer<Object>() {
             @Override
             public void onSubscribe(Disposable d) {
                 mCompositeDisposable.add(d);
@@ -2546,7 +2547,7 @@ public class CommonPresenter implements
 
             @Override
             public void onNext(Object o) {
-                View86.convert86(o.toString());
+                View86.convert86(o);
             }
 
             @Override
@@ -2564,8 +2565,8 @@ public class CommonPresenter implements
 
 
     @Override
-    public void request87(HashMap<String, Object> map) {
-        addSubscription(NetWorkManager.getApi().get87(map), new Observer() {
+    public void request87(Map<String, Object> map) {
+        addSubscription(NetWorkManager.getApi().get87(map), new Observer<Object>() {
             @Override
             public void onSubscribe(Disposable d) {
                 mCompositeDisposable.add(d);
@@ -2573,7 +2574,7 @@ public class CommonPresenter implements
 
             @Override
             public void onNext(Object o) {
-                View87.convert87(o.toString());
+                View87.convert87(o);
             }
 
             @Override
@@ -2591,8 +2592,8 @@ public class CommonPresenter implements
 
 
     @Override
-    public void request88(HashMap<String, Object> map) {
-        addSubscription(NetWorkManager.getApi().get88(map), new Observer() {
+    public void request88(Map<String, Object> map) {
+        addSubscription(NetWorkManager.getApi().get88(map), new Observer<Object>() {
             @Override
             public void onSubscribe(Disposable d) {
                 mCompositeDisposable.add(d);
@@ -2600,7 +2601,7 @@ public class CommonPresenter implements
 
             @Override
             public void onNext(Object o) {
-                View88.convert88(o.toString());
+                View88.convert88(o);
             }
 
             @Override
@@ -2618,8 +2619,8 @@ public class CommonPresenter implements
 
 
     @Override
-    public void request89(HashMap<String, Object> map) {
-        addSubscription(NetWorkManager.getApi().get89(map), new Observer() {
+    public void request89(Map<String, Object> map) {
+        addSubscription(NetWorkManager.getApi().get89(map), new Observer<Object>() {
             @Override
             public void onSubscribe(Disposable d) {
                 mCompositeDisposable.add(d);
@@ -2627,7 +2628,7 @@ public class CommonPresenter implements
 
             @Override
             public void onNext(Object o) {
-                View89.convert89(o.toString());
+                View89.convert89(o);
             }
 
             @Override
@@ -2645,8 +2646,8 @@ public class CommonPresenter implements
 
 
     @Override
-    public void request90(HashMap<String, Object> map) {
-        addSubscription(NetWorkManager.getApi().get90(map), new Observer() {
+    public void request90(Map<String, Object> map) {
+        addSubscription(NetWorkManager.getApi().get90(map), new Observer<Object>() {
             @Override
             public void onSubscribe(Disposable d) {
                 mCompositeDisposable.add(d);
@@ -2654,7 +2655,7 @@ public class CommonPresenter implements
 
             @Override
             public void onNext(Object o) {
-                View90.convert90(o.toString());
+                View90.convert90(o);
             }
 
             @Override
@@ -2672,8 +2673,8 @@ public class CommonPresenter implements
 
 
     @Override
-    public void request91(HashMap<String, Object> map) {
-        addSubscription(NetWorkManager.getApi().get91(map), new Observer() {
+    public void request91(Map<String, Object> map) {
+        addSubscription(NetWorkManager.getApi().get91(map), new Observer<Object>() {
             @Override
             public void onSubscribe(Disposable d) {
                 mCompositeDisposable.add(d);
@@ -2681,7 +2682,7 @@ public class CommonPresenter implements
 
             @Override
             public void onNext(Object o) {
-                View91.convert91(o.toString());
+                View91.convert91(o);
             }
 
             @Override
@@ -2699,8 +2700,8 @@ public class CommonPresenter implements
 
 
     @Override
-    public void request92(HashMap<String, Object> map) {
-        addSubscription(NetWorkManager.getApi().get92(map), new Observer() {
+    public void request92(Map<String, Object> map) {
+        addSubscription(NetWorkManager.getApi().get92(map), new Observer<Object>() {
             @Override
             public void onSubscribe(Disposable d) {
                 mCompositeDisposable.add(d);
@@ -2708,7 +2709,7 @@ public class CommonPresenter implements
 
             @Override
             public void onNext(Object o) {
-                View92.convert92(o.toString());
+                View92.convert92(o);
             }
 
             @Override
@@ -2726,8 +2727,8 @@ public class CommonPresenter implements
 
 
     @Override
-    public void request93(HashMap<String, Object> map) {
-        addSubscription(NetWorkManager.getApi().get93(map), new Observer() {
+    public void request93(Map<String, Object> map) {
+        addSubscription(NetWorkManager.getApi().get93(map), new Observer<Object>() {
             @Override
             public void onSubscribe(Disposable d) {
                 mCompositeDisposable.add(d);
@@ -2735,7 +2736,7 @@ public class CommonPresenter implements
 
             @Override
             public void onNext(Object o) {
-                View93.convert93(o.toString());
+                View93.convert93(o);
             }
 
             @Override
@@ -2753,8 +2754,8 @@ public class CommonPresenter implements
 
 
     @Override
-    public void request94(HashMap<String, Object> map) {
-        addSubscription(NetWorkManager.getApi().get94(map), new Observer() {
+    public void request94(Map<String, Object> map) {
+        addSubscription(NetWorkManager.getApi().get94(map), new Observer<Object>() {
             @Override
             public void onSubscribe(Disposable d) {
                 mCompositeDisposable.add(d);
@@ -2762,7 +2763,7 @@ public class CommonPresenter implements
 
             @Override
             public void onNext(Object o) {
-                View94.convert94(o.toString());
+                View94.convert94(o);
             }
 
             @Override
@@ -2780,8 +2781,8 @@ public class CommonPresenter implements
 
 
     @Override
-    public void request95(HashMap<String, Object> map) {
-        addSubscription(NetWorkManager.getApi().get95(map), new Observer() {
+    public void request95(Map<String, Object> map) {
+        addSubscription(NetWorkManager.getApi().get95(map), new Observer<Object>() {
             @Override
             public void onSubscribe(Disposable d) {
                 mCompositeDisposable.add(d);
@@ -2789,7 +2790,7 @@ public class CommonPresenter implements
 
             @Override
             public void onNext(Object o) {
-                View95.convert95(o.toString());
+                View95.convert95(o);
             }
 
             @Override
@@ -2807,8 +2808,8 @@ public class CommonPresenter implements
 
 
     @Override
-    public void request96(HashMap<String, Object> map) {
-        addSubscription(NetWorkManager.getApi().get96(map), new Observer() {
+    public void request96(Map<String, Object> map) {
+        addSubscription(NetWorkManager.getApi().get96(map), new Observer<Object>() {
             @Override
             public void onSubscribe(Disposable d) {
                 mCompositeDisposable.add(d);
@@ -2816,7 +2817,7 @@ public class CommonPresenter implements
 
             @Override
             public void onNext(Object o) {
-                View96.convert96(o.toString());
+                View96.convert96(o);
             }
 
             @Override
@@ -2834,8 +2835,8 @@ public class CommonPresenter implements
 
 
     @Override
-    public void request97(HashMap<String, Object> map) {
-        addSubscription(NetWorkManager.getApi().get97(map), new Observer() {
+    public void request97(Map<String, Object> map) {
+        addSubscription(NetWorkManager.getApi().get97(map), new Observer<Object>() {
             @Override
             public void onSubscribe(Disposable d) {
                 mCompositeDisposable.add(d);
@@ -2843,7 +2844,7 @@ public class CommonPresenter implements
 
             @Override
             public void onNext(Object o) {
-                View97.convert97(o.toString());
+                View97.convert97(o);
             }
 
             @Override
@@ -2861,8 +2862,8 @@ public class CommonPresenter implements
 
 
     @Override
-    public void request98(HashMap<String, Object> map) {
-        addSubscription(NetWorkManager.getApi().get98(map), new Observer() {
+    public void request98(Map<String, Object> map) {
+        addSubscription(NetWorkManager.getApi().get98(map), new Observer<Object>() {
             @Override
             public void onSubscribe(Disposable d) {
                 mCompositeDisposable.add(d);
@@ -2870,7 +2871,7 @@ public class CommonPresenter implements
 
             @Override
             public void onNext(Object o) {
-                View98.convert98(o.toString());
+                View98.convert98(o);
             }
 
             @Override
@@ -2888,8 +2889,8 @@ public class CommonPresenter implements
 
 
     @Override
-    public void request99(HashMap<String, Object> map) {
-        addSubscription(NetWorkManager.getApi().get99(map), new Observer() {
+    public void request99(Map<String, Object> map) {
+        addSubscription(NetWorkManager.getApi().get99(map), new Observer<Object>() {
             @Override
             public void onSubscribe(Disposable d) {
                 mCompositeDisposable.add(d);
@@ -2897,7 +2898,7 @@ public class CommonPresenter implements
 
             @Override
             public void onNext(Object o) {
-                View99.convert99(o.toString());
+                View99.convert99(o);
             }
 
             @Override
@@ -2915,8 +2916,8 @@ public class CommonPresenter implements
 
 
     @Override
-    public void request100(HashMap<String, Object> map) {
-        addSubscription(NetWorkManager.getApi().get100(map), new Observer() {
+    public void request100(Map<String, Object> map) {
+        addSubscription(NetWorkManager.getApi().get100(map), new Observer<Object>() {
             @Override
             public void onSubscribe(Disposable d) {
                 mCompositeDisposable.add(d);
@@ -2924,7 +2925,7 @@ public class CommonPresenter implements
 
             @Override
             public void onNext(Object o) {
-                View100.convert100(o.toString());
+                View100.convert100(o);
             }
 
             @Override
